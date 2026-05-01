@@ -360,50 +360,49 @@ function openEnvelope() {
 
 function openSection(sectionId) {
   const homeScreen = document.getElementById("home-screen");
+  const languageScreen = document.getElementById("language-screen");
   const section = document.getElementById(sectionId);
 
   if (!section) return;
 
+  if (languageScreen) {
+    languageScreen.classList.add("hidden");
+    languageScreen.classList.remove("fade-in", "fade-out");
+  }
+
   if (homeScreen) {
     homeScreen.classList.add("hidden");
-    homeScreen.style.opacity = "0";
-    homeScreen.style.visibility = "hidden";
-    homeScreen.style.pointerEvents = "none";
+    homeScreen.classList.remove("fade-in", "fade-out");
   }
 
   document.querySelectorAll(".panel").forEach((panel) => {
     panel.classList.add("hidden");
     panel.classList.remove("fade-in", "fade-out");
-    panel.style.opacity = "0";
-    panel.style.visibility = "hidden";
-    panel.style.pointerEvents = "none";
   });
 
   section.classList.remove("hidden");
-  section.style.opacity = "1";
-  section.style.visibility = "visible";
-  section.style.pointerEvents = "auto";
-  section.classList.add("fade-in");
 
   applyTranslations(currentLang);
 }
 
 function goBack() {
+  const languageScreen = document.getElementById("language-screen");
+  const homeScreen = document.getElementById("home-screen");
+
+  if (languageScreen) {
+    languageScreen.classList.add("hidden");
+    languageScreen.classList.remove("fade-in", "fade-out");
+  }
+
   document.querySelectorAll(".panel").forEach((panel) => {
     panel.classList.add("hidden");
     panel.classList.remove("fade-in", "fade-out");
-    panel.style.opacity = "0";
-    panel.style.visibility = "hidden";
-    panel.style.pointerEvents = "none";
   });
 
-  const homeScreen = document.getElementById("home-screen");
-  if (!homeScreen) return;
-
-  homeScreen.classList.remove("hidden");
-  homeScreen.style.opacity = "1";
-  homeScreen.style.visibility = "visible";
-  homeScreen.style.pointerEvents = "auto";
+  if (homeScreen) {
+    homeScreen.classList.remove("hidden");
+    homeScreen.classList.remove("fade-in", "fade-out");
+  }
 }
 
 function resetLanguageScreen() {
@@ -415,31 +414,20 @@ function resetLanguageScreen() {
 
   if (homeScreen) {
     homeScreen.classList.add("hidden");
-    homeScreen.style.opacity = "0";
-    homeScreen.style.visibility = "hidden";
-    homeScreen.style.pointerEvents = "none";
+    homeScreen.classList.remove("fade-in", "fade-out");
   }
 
   document.querySelectorAll(".panel").forEach((panel) => {
     panel.classList.add("hidden");
     panel.classList.remove("fade-in", "fade-out");
-    panel.style.opacity = "0";
-    panel.style.visibility = "hidden";
-    panel.style.pointerEvents = "none";
   });
 
   if (languageScreen) {
     languageScreen.classList.remove("hidden", "fade-in", "fade-out");
-    languageScreen.style.opacity = "1";
-    languageScreen.style.visibility = "visible";
-    languageScreen.style.pointerEvents = "auto";
   }
 
   if (box) {
-    box.style.display = "block";
-    box.style.opacity = "1";
-    box.style.visibility = "visible";
-    box.style.pointerEvents = "auto";
+    box.style.display = "flex";
   }
 
   startLanguageRotation();
