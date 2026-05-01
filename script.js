@@ -566,29 +566,11 @@ function openDoorIntro() {
 
 function playDoorVideo() {
   const intro = document.getElementById("door-intro");
-  const video = document.getElementById("door-video");
 
-  if (!intro || !video) return;
+  if (!intro) return;
 
   intro.classList.add("video-playing");
-
-  video.currentTime = 0;
-
-  const playPromise = video.play();
-
-  if (playPromise !== undefined) {
-    playPromise.catch(() => {
-      intro.classList.add("show-enter");
-    });
-  }
-
-  video.onended = function () {
-    intro.classList.add("show-enter");
-  };
-
-  setTimeout(() => {
-    intro.classList.add("show-enter");
-  }, 4500);
+  intro.classList.add("show-enter");
 }
 
 function enterInvitation() {
