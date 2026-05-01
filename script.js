@@ -565,26 +565,23 @@ function openDoorIntro() {
 }
 
 function playDoorVideo() {
+  alert("CLICK OK");
+
   const intro = document.getElementById("door-intro");
   const video = document.getElementById("door-video");
 
+  if (!intro) {
+    alert("ERRORE: door-intro non trovato");
+    return;
+  }
+
+  if (!video) {
+    alert("ERRORE: door-video non trovato");
+    return;
+  }
+
   intro.classList.add("video-playing");
-
-  video.currentTime = 0;
-
-  video.play().catch(() => {
-    // fallback iPhone se il video non parte
-    intro.classList.add("show-enter");
-  });
-
-  // sicurezza: vai avanti comunque dopo 1.2s
-  setTimeout(() => {
-    intro.classList.add("show-enter");
-  }, 1200);
-
-  video.onended = function () {
-    intro.classList.add("show-enter");
-  };
+  intro.classList.add("show-enter");
 }
 
 function enterInvitation() {
