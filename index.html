@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Wedding Invitation</title>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=115">
+  <link rel="stylesheet" href="style.css?v=117">
 </head>
 <body>
 <div id="global-bg"></div>
@@ -26,7 +26,7 @@
 <button
   type="button"
   class="door-video-tap"
-  onclick="document.getElementById('door-intro').style.display='none'; document.getElementById('language-screen').classList.remove('hidden');"
+  onclick="enterInvitation()"
   aria-label="Open invitation">
   OPEN
 </button>
@@ -61,6 +61,234 @@
     </div>
   </div>
 </section>
+
+<section id="home-screen" class="screen hidden">
+
+  <div class="home-luxury-bg">
+    <img src="assets/home-luxury-it.jpg" alt="Wedding invitation home">
+
+    <button class="hotspot hs-language" onclick="goBackToLanguage()" aria-label="Change language"></button>
+    <button class="hotspot hs-ceremony" onclick="openSection('ceremony')" aria-label="Ceremony"></button>
+    <button class="hotspot hs-reception" onclick="openSection('reception')" aria-label="Reception"></button>
+    <button class="hotspot hs-rsvp" onclick="openSection('rsvp')" aria-label="RSVP"></button>
+    <button class="hotspot hs-info" onclick="openSection('info')" aria-label="Info"></button>
+    <button class="hotspot hs-photos" onclick="openSection('photos')" aria-label="Photos"></button>
+    <button class="hotspot hs-gift" onclick="openSection('gift')" aria-label="Gift"></button>
+  </div>
+
+</section>
+
+  <section id="ceremony" class="panel hidden">
+    <div class="panel-card ceremony-card">
+
+      <div class="section-icon">
+        <img src="assets/icons/chiesa.png" alt="Ceremony icon">
+      </div>
+
+      <h2 data-i18n="ceremony">Cerimonia</h2>
+
+      <p class="section-title" data-i18n="ceremonyPlace"></p>
+      <p class="section-text" data-i18n="ceremonyAddress"></p>
+      <p class="section-time" data-i18n="ceremonyTime"></p>
+
+      <button type="button" class="map-button" onclick="openCeremonyMap()" data-i18n="openMap">
+        Apri su Google Maps
+      </button>
+
+      <div class="parking-block">
+        <button type="button" class="parking-toggle" onclick="toggleParking()">
+          <span data-i18n="parkingTitle">Parcheggi consigliati</span>
+          <span id="parking-arrow">⌄</span>
+        </button>
+
+        <div id="parking-list" class="parking-list hidden">
+
+          <div class="parking-item">
+            <div>
+              <strong data-i18n="parkingNear">Parcheggio vicino</strong>
+              <p data-i18n="parkingWalk2">2 min a piedi</p>
+            </div>
+            <button type="button" onclick="openParkingMap(1)" data-i18n="openSmall">Apri</button>
+          </div>
+
+          <div class="parking-item">
+            <div>
+              <strong data-i18n="parkingEasy">Parcheggio comodo</strong>
+              <p data-i18n="parkingWalk5">5 min a piedi</p>
+            </div>
+            <button type="button" onclick="openParkingMap(2)" data-i18n="openSmall">Apri</button>
+          </div>
+
+          <div class="parking-item">
+            <div>
+              <strong data-i18n="parkingAlt">Alternativa</strong>
+              <p data-i18n="parkingWalk10">10 min a piedi</p>
+            </div>
+            <button type="button" onclick="openParkingMap(3)" data-i18n="openSmall">Apri</button>
+          </div>
+
+        </div>
+      </div>
+
+      <button type="button" class="back-button" onclick="goBack()" data-i18n="back">Indietro</button>
+
+    </div>
+  </section>
+
+ <section id="reception" class="panel hidden">
+  <div class="panel-card reception-card">
+
+    <div class="section-icon">
+      <img src="assets/icons/masseria.png" alt="Reception icon">
+    </div>
+
+    <h2 data-i18n="reception">Ricevimento</h2>
+
+    <p class="section-title" data-i18n="receptionPlace"></p>
+    <p class="section-text" data-i18n="receptionAddress"></p>
+    <p class="section-time" data-i18n="receptionTime"></p>
+
+    <button type="button" class="map-button" onclick="openReceptionMap()" data-i18n="openMap">
+      Apri su Google Maps
+    </button>
+
+    <button type="button" class="secondary-button" onclick="openReceptionWebsite()" data-i18n="openWebsite">
+      Sito web
+    </button>
+
+    <button type="button" class="back-button" onclick="goBack()" data-i18n="back">Back</button>
+
+  </div>
+ </section>
+
+<section id="rsvp" class="panel hidden">
+  <div class="panel-card rsvp-card">
+
+    <div class="section-icon">
+      <img src="assets/icons/rsvp.png" alt="RSVP icon">
+    </div>
+
+    <h2 data-i18n="rsvpTitle">RSVP</h2>
+
+    <p class="section-text" data-i18n="rsvpText">
+      Conferma la tua presenza entro il 10 settembre
+    </p>
+
+    <button 
+      type="button" 
+      class="map-button" 
+      onclick="confirmRSVP()" 
+      data-i18n="rsvpButton">
+      Conferma partecipazione
+    </button>
+
+    <button 
+      type="button" 
+      class="back-button" 
+      onclick="goBack()" 
+      data-i18n="back">
+      Indietro
+    </button>
+
+  </div>
+</section>
+
+<section id="info" class="panel hidden">
+  <div class="panel-card info-card">
+
+    <div class="section-icon">
+      <img src="assets/icons/info.png" alt="Info icon">
+    </div>
+
+    <h2 data-i18n="info">Info</h2>
+
+    <p class="section-text info-intro" data-i18n="infoIntro">
+      Tutte le informazioni utili per il vostro soggiorno
+    </p>
+
+    <div class="info-content" data-i18n="infoContent"></div>
+
+    <button type="button" class="back-button" onclick="goBack()" data-i18n="back">
+      Indietro
+    </button>
+
+  </div>
+</section>
+
+<section id="photos" class="panel hidden">
+  <div class="panel-card photos-card">
+
+    <div class="section-icon">
+      <img src="assets/icons/foto.png" alt="Photos icon">
+    </div>
+
+    <h2 data-i18n="photosTitle">Foto</h2>
+
+    <p class="section-text" data-i18n="photosText">
+      Hai scattato qualche foto? 👇
+    </p>
+
+    <button 
+      type="button" 
+      class="map-button" 
+      onclick="openPhotosUpload()" 
+      data-i18n="photosButton">
+      Condividi i tuoi ricordi
+    </button>
+
+    <p class="photo-note" data-i18n="photosNote">
+      Puoi caricare foto e video anche dopo il matrimonio.
+    </p>
+
+    <button type="button" class="back-button" onclick="goBack()" data-i18n="back">
+      Indietro
+    </button>
+
+  </div>
+</section>
+
+<section id="gift" class="panel hidden">
+  <div class="panel-card gift-card">
+
+    <div class="section-icon">
+      <img src="assets/icons/regalo.png" alt="Gift icon">
+    </div>
+
+    <h2 data-i18n="giftTitle">Gift</h2>
+
+    <p class="section-text" data-i18n="giftText">
+      Il regalo più grande è la vostra presenza.  
+      Se desiderate contribuire, potete farlo qui.
+    </p>
+
+    <div class="iban-box">
+      <span id="iban">IT00X0000000000000000000000</span>
+    </div>
+
+    <button 
+      type="button" 
+      class="map-button" 
+      onclick="copyIBAN()" 
+      data-i18n="copyIban">
+      Copia IBAN
+    </button>
+
+    <button 
+      type="button" 
+      class="back-button" 
+      onclick="goBack()" 
+      data-i18n="back">
+      Indietro
+    </button>
+
+  </div>
+</section>
+
+</div>
+
+<script src="script.js?v=117"></script>
+</body>
+</html></section>
 
 <section id="home-screen" class="screen hidden">
 
