@@ -1112,3 +1112,26 @@ body {
 #language-screen.hidden {
   pointer-events: none !important;
 }
+.panel {
+  overflow-y: auto !important;
+  align-items: flex-start !important;
+  padding-top: max(22px, env(safe-area-inset-top)) !important;
+  padding-bottom: max(110px, env(safe-area-inset-bottom)) !important;
+}
+
+.panel-card {
+  margin: auto 0;
+}
+
+.ceremony-card {
+  margin-top: 24px !important;
+  margin-bottom: 120px !important;
+}
+
+.back-button {
+  display: inline-flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  margin-bottom: 20px !important;
+}
