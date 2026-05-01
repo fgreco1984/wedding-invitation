@@ -31,9 +31,7 @@ body {
 }
 
 .hidden {
-  opacity: 0 !important;
-  pointer-events: none !important;
-  visibility: hidden !important;
+  display: none !important;
 }
 
 /* BASE SCHERMATE */
