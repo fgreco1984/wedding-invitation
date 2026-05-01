@@ -571,12 +571,19 @@ function playDoorVideo() {
   intro.classList.add("video-playing");
 
   video.currentTime = 0;
-  video.play();
+
+  video.play().catch(() => {
+    // fallback iPhone se il video non parte
+    intro.classList.add("show-enter");
+  });
+
+  // sicurezza: vai avanti comunque dopo 1.2s
+  setTimeout(() => {
+    intro.classList.add("show-enter");
+  }, 1200);
 
   video.onended = function () {
-    setTimeout(() => {
-      intro.classList.add("show-enter");
-    }, 100);
+    intro.classList.add("show-enter");
   };
 }
 
