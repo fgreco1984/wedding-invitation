@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Wedding Invitation</title>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=123">
+  <link rel="stylesheet" href="style.css?v=124">
 </head>
 <body>
 <div id="global-bg"></div>
@@ -298,7 +298,7 @@
 
 </div>
 
-<script src="./script.js?v=123"></script>
+<script src="./script.js?v=124"></script>
 
 <script>
 let forcedLang = "it";
@@ -327,6 +327,11 @@ function forceStartLanguageRotation() {
 
 function forceOpenHome(lang) {
   forcedLang = lang;
+  currentLang = lang;
+
+  if (typeof applyTranslations === "function") {
+    applyTranslations(lang);
+  }
 
   const img = document.querySelector(".home-luxury-bg img");
   if (img) {
