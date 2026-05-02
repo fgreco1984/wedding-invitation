@@ -6,7 +6,7 @@
   <title>Wedding Invitation</title>
 
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=132">
+  <link rel="stylesheet" href="style.css?v=133">
 </head>
 
 <body>
@@ -26,40 +26,13 @@
           preload="auto">
         </video>
 
-<button
-  type="button"
-  class="door-video-tap"
-  onclick="
-    const intro = document.getElementById('door-intro');
-    const lang = document.getElementById('language-screen');
-    const box = document.getElementById('language-box');
-
-    if (intro) intro.style.display = 'none';
-
-    if (lang) {
-      lang.classList.remove('hidden');
-      lang.style.display = 'flex';
-      lang.style.opacity = '1';
-      lang.style.visibility = 'visible';
-      lang.style.pointerEvents = 'auto';
-    }
-
-    if (box) {
-      box.style.display = 'flex';
-      box.style.opacity = '1';
-      box.style.visibility = 'visible';
-      box.style.pointerEvents = 'auto';
-    }
-
-    if (typeof startLanguageRotation === 'function') {
-      setTimeout(startLanguageRotation, 100);
-    }
-
-    alert('setLanguage: ' + typeof setLanguage + '\nstartLanguageRotation: ' + typeof startLanguageRotation);
-  "
-  aria-label="Open invitation">
-  OPEN
-</button>
+        <button
+          type="button"
+          class="door-video-tap"
+          onclick="enterInvitation()"
+          aria-label="Open invitation">
+          OPEN
+        </button>
       </div>
     </section>
 
@@ -247,6 +220,6 @@
 
   </div>
 
-  <script src="./script.js?v=132"></script>
+  <script src="./script.js?v=133"></script>
 </body>
 </html>
