@@ -66,9 +66,9 @@
       <h1 id="language-rotator" class="language-rotator">Scegli la lingua</h1>
 
       <div class="lang-buttons">
-        <button type="button" onclick="setLanguage('it')">Italiano</button>
-        <button type="button" onclick="setLanguage('en')">English</button>
-        <button type="button" onclick="setLanguage('ua')">Українська</button>
+       <button type="button" onclick="forceOpenHome('it')">Italiano</button>
+       <button type="button" onclick="forceOpenHome('en')">English</button>
+       <button type="button" onclick="forceOpenHome('ua')">Українська</button>
       </div>
     </div>
   </div>
@@ -298,13 +298,26 @@
 
 </div>
 
-<script src="./script.js?v=121"></script>
+<script src="./script.js?v=122"></script>
+
 <script>
-  window.addEventListener("load", function () {
-    if (typeof startLanguageRotation === "function") {
-      startLanguageRotation();
-    }
-  });
+function forceOpenHome(lang) {
+  currentLang = lang;
+
+  const img = document.querySelector(".home-luxury-bg img");
+  if (img) {
+    if (lang === "it") img.src = "assets/home-luxury-it.jpg";
+    if (lang === "en") img.src = "assets/home-luxury-en.jpg";
+    if (lang === "ua") img.src = "assets/home-luxury-ua.jpg";
+  }
+
+  const languageScreen = document.getElementById("language-screen");
+  const homeScreen = document.getElementById("home-screen");
+
+  if (languageScreen) languageScreen.classList.add("hidden");
+  if (homeScreen) homeScreen.classList.remove("hidden");
+}
 </script>
+
 </body>
 </html>
