@@ -386,10 +386,10 @@ body {
 }
 
 .hs-rsvp {
-  top: 40.5%;
-  left: 10.5%;
-  width: 79%;
-  height: 12.2%;
+  top: 42.5% !important;
+  left: 10.5% !important;
+  width: 79% !important;
+  height: 12.2% !important;
 }
 
 .hs-info {
