@@ -372,17 +372,17 @@ body {
 }
 
 .hs-ceremony {
-  top: 43.2%;
-  left: 11.5%;
-  width: 38%;
-  height: 15.8%;
+  top: 41.2% !important;
+  left: 10.5% !important;
+  width: 39% !important;
+  height: 15.8% !important;
 }
 
 .hs-reception {
-  top: 43.2%;
-  left: 51%;
-  width: 38%;
-  height: 15.8%;
+  top: 41.2% !important;
+  left: 52% !important;
+  width: 39% !important;
+  height: 15.8% !important;
 }
 
 .hs-rsvp {
@@ -393,24 +393,24 @@ body {
 }
 
 .hs-info {
-  top: 73.7%;
-  left: 10.5%;
-  width: 25%;
-  height: 14.5%;
+  top: 71.7% !important;
+  left: 8.5% !important;
+  width: 27% !important;
+  height: 14.5% !important;
 }
 
 .hs-photos {
-  top: 73.7%;
-  left: 37.5%;
-  width: 25%;
-  height: 14.5%;
+  top: 71.7% !important;
+  left: 37.5% !important;
+  width: 27% !important;
+  height: 14.5% !important;
 }
 
 .hs-gift {
-  top: 73.7%;
-  left: 64.5%;
-  width: 25%;
-  height: 14.5%;
+  top: 71.7% !important;
+  left: 65.5% !important;
+  width: 27% !important;
+  height: 14.5% !important;
 }
 
 /* =========================================================
