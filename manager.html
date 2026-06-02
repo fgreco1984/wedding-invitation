@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wedding Manager</title>
+  <meta name="theme-color" content="#f6dfe6">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Wedding Manager">
+  <link rel="manifest" href="manager.webmanifest">
+  <link rel="apple-touch-icon" href="manager/icons/icon-192.png">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="manager/manager.css?v=6">
+</head>
+<body>
+  <main class="manager-shell">
+    <section class="topbar" aria-label="Riepilogo">
+      <div>
+        <p class="eyebrow">Wedding Manager</p>
+        <h1>Inna & Fabio</h1>
+      </div>
+      <div class="summary-grid">
+        <article>
+          <span id="metric-total">0</span>
+          <small>Invitati</small>
+        </article>
+        <article>
+          <span id="metric-people">0</span>
+          <small>Persone stimate</small>
+        </article>
+        <article>
+          <span id="metric-to-send">0</span>
+          <small>Da inviare</small>
+        </article>
+        <article>
+          <span id="metric-flags">0</span>
+          <small>Avvisi speciali</small>
+        </article>
+      </div>
+    </section>
+
+    <section class="workspace">
+      <aside class="guest-list-panel" aria-label="Lista invitati">
+        <div class="panel-heading">
+          <h2>Invitati</h2>
+          <button type="button" class="soft-button" id="add-guest-button">Nuovo</button>
+        </div>
+
+        <label class="search-field">
+          <span>Cerca</span>
+          <input id="search-input" type="search" placeholder="Nome, cognome, ID...">
+        </label>
+
+        <div class="filter-row" aria-label="Filtri">
+          <button type="button" class="filter-pill active" data-filter="all">Tutti</button>
+          <button type="button" class="filter-pill" data-filter="children">Figli</button>
+          <button type="button" class="filter-pill" data-filter="travel">Da fuori</button>
+          <button type="button" class="filter-pill" data-filter="missing-phone">No tel.</button>
+        </div>
+
+        <div id="guest-list" class="guest-list"></div>
+      </aside>
+
+      <section class="editor-panel" aria-label="Scheda invitato">
+        <div class="empty-state" id="empty-state">
+          <h2>Seleziona un invitato</h2>
+          <p>Qui vedrai la scheda completa, i flag speciali e i link pronti.</p>
+        </div>
+
+        <form id="guest-form" class="guest-form hidden">
+          <div class="editor-head">
+            <div>
+              <p class="eyebrow" id="guest-id-label">ID</p>
+              <h2 id="guest-title">Invitato</h2>
+            </div>
+            <div class="head-actions">
+              <span class="save-status" id="save-status">Salvato in locale</span>
+              <button type="button" class="soft-button" id="export-backup-button">Esporta backup</button>
+              <button type="button" class="soft-button" id="import-backup-button">Importa backup</button>
+              <input class="hidden-file-input" id="import-backup-input" type="file" accept="application/json,.json">
+              <button type="button" class="soft-button" id="copy-link-button">Copia link</button>
+              <button type="button" class="danger-button" id="delete-guest-button">Elimina</button>
+              <button type="button" class="primary-button" id="save-button">Salva</button>
+            </div>
+          </div>
+
+          <div class="form-grid">
+            <div class="field-pair">
+              <label>
+                <span>Nome</span>
+                <input name="name" autocomplete="off">
+              </label>
+
+              <label>
+                <span>Cognome</span>
+                <input name="surname" autocomplete="off">
+              </label>
+            </div>
+
+            <label>
+              <span>Lingua</span>
+              <select name="language">
+                <option>Italiano</option>
+                <option>English</option>
+                <option>Українська</option>
+              </select>
+            </label>
+
+            <label>
+              <span>Appartenenza</span>
+              <select name="side">
+                <option>Fabio</option>
+                <option>Inna</option>
+                <option>Entrambi</option>
+              </select>
+            </label>
+
+            <label>
+              <span>Parentela / gruppo</span>
+              <select name="relation" id="relation-select"></select>
+            </label>
+
+            <label class="phone-field">
+              <span>Telefono</span>
+              <div class="phone-combo">
+                <select name="phonePrefix" id="phone-prefix-select" aria-label="Prefisso telefonico"></select>
+                <input name="phoneNumber" inputmode="tel" placeholder="3331234567">
+              </div>
+            </label>
+
+            <label>
+              <span>Email <em>opzionale</em></span>
+              <input name="email" type="email" autocomplete="email" placeholder="nome@email.com">
+            </label>
+
+            <div class="companion-picker">
+              <span>Accompagnatori</span>
+              <div class="companion-options">
+                <label>
+                  <input type="checkbox" name="companionHusband">
+                  <span>Marito</span>
+                </label>
+                <label>
+                  <input type="checkbox" name="companionWife">
+                  <span>Moglie</span>
+                </label>
+                <label>
+                  <input type="checkbox" name="companionChild1">
+                  <span>Figlio/a</span>
+                </label>
+                <label>
+                  <input type="checkbox" name="companionChild2">
+                  <span>Figlio/a</span>
+                </label>
+                <label>
+                  <input type="checkbox" name="companionChild3">
+                  <span>Figlio/a</span>
+                </label>
+              </div>
+            </div>
+
+            <label>
+              <span>Tavolo</span>
+              <input name="table" autocomplete="off">
+            </label>
+
+            <label>
+              <span>Stato invio</span>
+              <select name="sendStatus">
+                <option>Da inviare</option>
+                <option>Inviato</option>
+                <option>Sollecitare</option>
+                <option>Non inviare</option>
+              </select>
+            </label>
+
+            <label>
+              <span>RSVP</span>
+              <select name="rsvpStatus">
+                <option>In attesa</option>
+                <option>Sì</option>
+                <option>No</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="toggle-grid">
+            <label class="switch-card">
+              <input type="checkbox" name="hasChildren">
+              <span>
+                <strong>Ha figli?</strong>
+                <small>Mostra avviso adults-only nella sezione RSVP.</small>
+              </span>
+            </label>
+
+            <label class="switch-card">
+              <input type="checkbox" name="travelsFromAway">
+              <span>
+                <strong>Ospite da fuori?</strong>
+                <small>Mostra avviso presenza/regalo nella sezione Un pensiero.</small>
+              </span>
+            </label>
+          </div>
+
+          <label class="notes-field">
+            <span>Note interne</span>
+            <textarea name="notes" rows="3"></textarea>
+          </label>
+
+          <div class="link-box">
+            <div>
+              <span>Link invito personale</span>
+              <a id="invite-link" target="_blank" rel="noopener noreferrer"></a>
+            </div>
+            <button type="button" class="soft-button" id="open-invite-button">Apri</button>
+          </div>
+
+          <div class="message-box">
+            <div class="message-head">
+              <span>Frase WhatsApp</span>
+              <button type="button" class="soft-button" id="copy-message-button">Copia frase</button>
+            </div>
+            <textarea id="whatsapp-message" rows="5" readonly></textarea>
+          </div>
+        </form>
+      </section>
+    </section>
+  </main>
+
+  <script src="manager/manager-data.js?v=1"></script>
+  <script src="manager/phone-prefixes.js?v=1"></script>
+  <script src="manager/manager.js?v=8"></script>
+  <script>
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => {
+        navigator.serviceWorker.register("manager-sw.js").catch(() => {});
+      });
+    }
+  </script>
+</body>
+</html>

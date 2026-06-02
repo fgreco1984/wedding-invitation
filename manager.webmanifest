@@ -1,0 +1,24 @@
+{
+  "name": "Wedding Manager - Inna & Fabio",
+  "short_name": "Wedding Manager",
+  "start_url": "manager.html?v=9",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#fffaf0",
+  "theme_color": "#f6dfe6",
+  "description": "Gestione invitati, RSVP e messaggi WhatsApp per il matrimonio di Inna e Fabio.",
+  "icons": [
+    {
+      "src": "manager/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "manager/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
