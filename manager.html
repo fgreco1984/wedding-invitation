@@ -10,7 +10,7 @@
   <link rel="manifest" href="manager.webmanifest">
   <link rel="apple-touch-icon" href="manager/icons/icon-192.png">
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="manager/manager.css?v=6">
+  <link rel="stylesheet" href="manager/manager.css?v=7">
 </head>
 <body>
   <main class="manager-shell">
@@ -46,6 +46,15 @@
           <button type="button" class="soft-button" id="add-guest-button">Nuovo</button>
         </div>
 
+        <div class="data-actions" aria-label="Backup dati">
+          <span class="save-status" id="save-status">Salvato in locale</span>
+          <div>
+            <button type="button" class="soft-button" id="import-backup-button">Importa backup</button>
+            <button type="button" class="soft-button" id="export-backup-button">Esporta backup</button>
+          </div>
+          <input class="hidden-file-input" id="import-backup-input" type="file" accept="application/json,.json">
+        </div>
+
         <label class="search-field">
           <span>Cerca</span>
           <input id="search-input" type="search" placeholder="Nome, cognome, ID...">
@@ -74,10 +83,6 @@
               <h2 id="guest-title">Invitato</h2>
             </div>
             <div class="head-actions">
-              <span class="save-status" id="save-status">Salvato in locale</span>
-              <button type="button" class="soft-button" id="export-backup-button">Esporta backup</button>
-              <button type="button" class="soft-button" id="import-backup-button">Importa backup</button>
-              <input class="hidden-file-input" id="import-backup-input" type="file" accept="application/json,.json">
               <button type="button" class="soft-button" id="copy-link-button">Copia link</button>
               <button type="button" class="danger-button" id="delete-guest-button">Elimina</button>
               <button type="button" class="primary-button" id="save-button">Salva</button>
@@ -229,7 +234,7 @@
 
   <script src="manager/manager-data.js?v=1"></script>
   <script src="manager/phone-prefixes.js?v=1"></script>
-  <script src="manager/manager.js?v=8"></script>
+  <script src="manager/manager.js?v=9"></script>
   <script>
     if ("serviceWorker" in navigator) {
       window.addEventListener("load", () => {

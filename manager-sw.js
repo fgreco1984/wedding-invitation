@@ -1,10 +1,10 @@
-const CACHE_NAME = "wedding-manager-offline-v1";
+const CACHE_NAME = "wedding-manager-offline-v2";
 const APP_SHELL = [
-  "./manager.html?v=9",
-  "./manager/manager.css?v=6",
+  "./manager.html?v=10",
+  "./manager/manager.css?v=7",
   "./manager/manager-data.js?v=1",
   "./manager/phone-prefixes.js?v=1",
-  "./manager/manager.js?v=8",
+  "./manager/manager.js?v=9",
   "./manager.webmanifest",
   "./manager/icons/icon-192.png",
   "./manager/icons/icon-512.png"
@@ -39,7 +39,7 @@ self.addEventListener("fetch", (event) => {
         return response;
       }).catch(() => {
         if (event.request.mode === "navigate") {
-          return caches.match("./manager.html?v=9", { ignoreSearch: true });
+          return caches.match("./manager.html?v=10", { ignoreSearch: true });
         }
 
         return cached;

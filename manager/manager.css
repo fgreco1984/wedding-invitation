@@ -224,6 +224,26 @@ textarea:focus {
   color: #8b5b68;
 }
 
+.data-actions {
+  display: grid;
+  gap: 9px;
+  margin: 12px 0 14px;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: rgba(255,255,255,0.42);
+}
+
+.data-actions > div {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.data-actions .soft-button {
+  width: 100%;
+}
+
 .danger-button {
   color: #8b3d4d;
   background: rgba(246, 223, 230, 0.68);
@@ -503,6 +523,10 @@ textarea:focus {
   .head-actions {
     align-items: stretch;
     flex-direction: column;
+  }
+
+  .data-actions > div {
+    grid-template-columns: 1fr;
   }
 
   .link-box {
