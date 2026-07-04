@@ -1,49 +1,16 @@
-const CACHE_NAME = "wedding-manager-offline-v2";
-const APP_SHELL = [
-  "./manager.html?v=10",
-  "./manager/manager.css?v=7",
-  "./manager/manager-data.js?v=1",
-  "./manager/phone-prefixes.js?v=1",
-  "./manager/manager.js?v=9",
-  "./manager.webmanifest",
-  "./manager/icons/icon-192.png",
-  "./manager/icons/icon-512.png"
-];
-
 self.addEventListener("install", (event) => {
-  event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => cache.addAll(APP_SHELL))
-  );
   self.skipWaiting();
 });
 
 self.addEventListener("activate", (event) => {
   event.waitUntil(
-    caches.keys().then((keys) => Promise.all(
-      keys.filter((key) => key !== CACHE_NAME).map((key) => caches.delete(key))
-    ))
+    caches.keys()
+      .then((keys) => Promise.all(keys.map((key) => caches.delete(key))))
+      .then(() => self.registration.unregister())
+      .then(() => self.clients.claim())
   );
-  self.clients.claim();
 });
 
-self.addEventListener("fetch", (event) => {
-  if (event.request.method !== "GET") return;
-
-  event.respondWith(
-    caches.match(event.request, { ignoreSearch: true }).then((cached) => {
-      if (cached) return cached;
-
-      return fetch(event.request).then((response) => {
-        const copy = response.clone();
-        caches.open(CACHE_NAME).then((cache) => cache.put(event.request, copy));
-        return response;
-      }).catch(() => {
-        if (event.request.mode === "navigate") {
-          return caches.match("./manager.html?v=10", { ignoreSearch: true });
-        }
-
-        return cached;
-      });
-    })
-  );
+self.addEventListener("fetch", () => {
+  return;
 });
