@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <title>Wedding Invitation</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style-20260704.css">
+</head>
+
+<body>
+  <script>
+    (function clearOldWeddingCache() {
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker.getRegistrations()
+          .then(function(registrations) {
+            registrations.forEach(function(registration) {
+              registration.unregister();
+            });
+          })
+          .catch(function() {});
+      }
+
+      if ("caches" in window) {
+        caches.keys()
+          .then(function(keys) {
+            keys.forEach(function(key) {
+              caches.delete(key);
+            });
+          })
+          .catch(function() {});
+      }
+    })();
+  </script>
+
+  <div id="global-bg"></div>
+
+  <div id="app">
+
+    <section id="door-intro" class="door-intro">
+      <div class="door-scene">
+        <video
+          id="door-video"
+          class="door-video"
+          src="./assets/door-opening.mp4?v=opt1"
+          poster="./assets/door-closed.jpg?v=opt1"
+          playsinline
+          webkit-playsinline
+          preload="auto">
+        </video>
+
+        <div class="door-vignette"></div>
+        <div class="door-light-beam"></div>
+        <div class="door-gold-haze"></div>
+        <div class="door-sparkles" aria-hidden="true">
+          <span style="--x: 18%; --y: 30%; --d: 0.1s;"></span>
+          <span style="--x: 76%; --y: 27%; --d: 0.5s;"></span>
+          <span style="--x: 36%; --y: 43%; --d: 0.9s;"></span>
+          <span style="--x: 63%; --y: 45%; --d: 1.2s;"></span>
+          <span style="--x: 28%; --y: 62%; --d: 1.5s;"></span>
+          <span style="--x: 70%; --y: 65%; --d: 1.9s;"></span>
+          <span style="--x: 48%; --y: 24%; --d: 2.2s;"></span>
+          <span style="--x: 51%; --y: 73%; --d: 2.5s;"></span>
+        </div>
+
+        <p class="door-intro-line" data-i18n="doorIntroLine">Se sei giunto fin qui, allora sei pronto a varcare la soglia del nostro giorno più bello</p>
+
+        <button
+          type="button"
+          class="door-video-tap"
+          onclick="playDoorVideoThenLanguage()"
+          aria-label="Open invitation">
+          OPEN
+        </button>
+      </div>
+    </section>
+
+    <section id="language-screen" class="screen hidden">
+      <div class="hero-envelope" id="hero-envelope">
+        <img src="assets/door-open.jpg?v=opt1" class="hero-envelope-img" id="hero-envelope-img" alt="Open door">
+
+        <div class="overlay-soft"></div>
+        <div class="overlay-focus"></div>
+
+        <div class="language-box" id="language-box">
+          <p class="language-kicker" data-i18n="weddingInvitation">WEDDING INVITATION</p>
+          <h1 id="language-rotator" class="language-rotator">Scegli la lingua</h1>
+
+          <div class="lang-buttons">
+            <button type="button" onclick="setLanguage('it')">Italiano</button>
+            <button type="button" onclick="setLanguage('en')">English</button>
+            <button type="button" onclick="setLanguage('ua')">Українська</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="home-screen" class="screen hidden">
+      <div class="home-luxury-bg">
+        <img src="assets/new_home-luxury-it.png?v=home-ceremony1" alt="Wedding invitation home">
+        <button type="button" class="hotspot hs-language" onclick="goBackToIntro()" aria-label="Restart invitation"></button>
+        <button type="button" class="hotspot hs-change-language" onclick="goBackToLanguage()" aria-label="Change language"></button>
+        <button type="button" class="hotspot hs-ceremony" onclick="openSection('ceremony')" aria-label="Ceremony"></button>
+        <button type="button" class="hotspot hs-reception" onclick="openSection('reception')" aria-label="Reception"></button>
+        <button type="button" class="hotspot hs-rsvp" onclick="openSection('rsvp')" aria-label="RSVP"></button>
+        <button type="button" class="hotspot hs-info" onclick="openSection('info')" aria-label="Info"></button>
+        <button type="button" class="hotspot hs-photos" onclick="openSection('photos')" aria-label="Photos"></button>
+        <button type="button" class="hotspot hs-gift" onclick="openSection('gift')" aria-label="Gift"></button>
+      </div>
+    </section>
+
+    <section id="ceremony" class="panel hidden">
+      <div class="panel-card ceremony-card">
+        <div class="section-icon">
+          <img src="assets/icons/chiesa.png?v=opt1" alt="Ceremony icon">
+        </div>
+
+        <h2 data-i18n="ceremony">Cerimonia</h2>
+        <p class="section-title" data-i18n="ceremonyPlace"></p>
+        <p class="section-text" data-i18n="ceremonyAddress"></p>
+        <p class="section-time" data-i18n="ceremonyTime"></p>
+
+        <button type="button" class="map-button" onclick="openCeremonyMap()" data-i18n="openMap">
+          Apri su Google Maps
+        </button>
+
+        <div class="parking-block">
+          <button type="button" class="parking-toggle" onclick="toggleParking()" aria-expanded="false" aria-controls="parking-list">
+            <span data-i18n="parkingTitle">Parcheggi consigliati</span>
+            <span id="parking-arrow">⌄</span>
+          </button>
+
+          <div id="parking-list" class="parking-list hidden">
+            <div class="parking-item">
+              <div>
+                <strong data-i18n="parkingNear">Parcheggio vicino</strong>
+                <p data-i18n="parkingWalk2">2 min a piedi</p>
+              </div>
+              <button type="button" onclick="openParkingMap(1)" data-i18n="openSmall">Apri</button>
+            </div>
+
+            <div class="parking-item">
+              <div>
+                <strong data-i18n="parkingEasy">Parcheggio comodo</strong>
+                <p data-i18n="parkingWalk5">5 min a piedi</p>
+              </div>
+              <button type="button" onclick="openParkingMap(2)" data-i18n="openSmall">Apri</button>
+            </div>
+
+            <div class="parking-item">
+              <div>
+                <strong data-i18n="parkingAlt">Alternativa</strong>
+                <p data-i18n="parkingWalk10">10 min a piedi</p>
+              </div>
+              <button type="button" onclick="openParkingMap(3)" data-i18n="openSmall">Apri</button>
+            </div>
+          </div>
+        </div>
+
+        <button type="button" class="back-button" onclick="goBack()" data-i18n="back">Indietro</button>
+      </div>
+    </section>
+
+    <section id="reception" class="panel hidden">
+      <div class="panel-card reception-card">
+        <div class="section-icon">
+          <img src="assets/icons/masseria.png?v=opt1" alt="Reception icon">
+        </div>
+
+        <h2 data-i18n="reception">Ricevimento</h2>
+        <p class="section-title" data-i18n="receptionPlace"></p>
+        <p class="section-text" data-i18n="receptionAddress"></p>
+        <p class="section-time" data-i18n="receptionTime"></p>
+
+        <button type="button" class="map-button" onclick="openReceptionMap()" data-i18n="openMap">
+          Apri su Google Maps
+        </button>
+
+        <button type="button" class="secondary-button" onclick="openReceptionWebsite()" data-i18n="openWebsite">
+          Sito web
+        </button>
+
+        <button type="button" class="back-button" onclick="goBack()" data-i18n="back">Indietro</button>
+      </div>
+    </section>
+
+    <section id="rsvp" class="panel hidden">
+      <div class="panel-card rsvp-card">
+        <div class="section-icon">
+          <img src="assets/icons/rsvp.png?v=opt1" alt="RSVP icon">
+        </div>
+
+        <h2 data-i18n="rsvpTitle">RSVP</h2>
+        <p class="section-text" data-i18n="rsvpText">Conferma la tua presenza entro il 10 settembre</p>
+
+        <div class="wedding-countdown" aria-live="polite">
+          <div class="countdown-kicker" data-i18n="countdownKicker">Mancano</div>
+          <div class="countdown-units">
+            <div class="countdown-unit">
+              <strong id="countdown-days">--</strong>
+              <span data-i18n="countdownDays">giorni</span>
+            </div>
+            <div class="countdown-unit">
+              <strong id="countdown-hours">--</strong>
+              <span data-i18n="countdownHours">ore</span>
+            </div>
+            <div class="countdown-unit">
+              <strong id="countdown-minutes">--</strong>
+              <span data-i18n="countdownMinutes">min</span>
+            </div>
+          </div>
+        </div>
+
+        <button type="button" class="map-button" onclick="confirmRSVP()" data-i18n="rsvpButton">
+          Conferma partecipazione
+        </button>
+
+        <button type="button" class="back-button" onclick="goBack()" data-i18n="back">Indietro</button>
+      </div>
+    </section>
+
+    <section id="info" class="panel hidden">
+      <div class="panel-card info-card">
+        <div class="section-icon">
+          <img src="assets/icons/info.png?v=opt1" alt="Info icon">
+        </div>
+
+        <h2 data-i18n="info">Info</h2>
+        <p class="section-text info-intro" data-i18n="infoIntro">Tutte le informazioni utili per il vostro soggiorno</p>
+        <div class="info-content" data-i18n="infoContent"></div>
+
+        <button type="button" class="back-button" onclick="goBack()" data-i18n="back">Indietro</button>
+      </div>
+    </section>
+
+    <section id="photos" class="panel hidden">
+      <div class="panel-card photos-card">
+        <div class="section-icon">
+          <img src="assets/icons/foto.png?v=opt1" alt="Photos icon">
+        </div>
+
+        <h2 data-i18n="photosTitle">Foto</h2>
+        <p class="section-text" data-i18n="photosText">Hai scattato qualche foto? 👇</p>
+
+        <button type="button" class="map-button" onclick="openPhotosUpload()" data-i18n="photosButton">
+          Condividi i tuoi ricordi
+        </button>
+
+        <p class="photo-note" data-i18n="photosNote">Puoi caricare foto e video anche dopo il matrimonio.</p>
+
+        <button type="button" class="back-button" onclick="goBack()" data-i18n="back">Indietro</button>
+      </div>
+    </section>
+
+    <section id="gift" class="panel hidden">
+      <div class="panel-card gift-card">
+        <div class="section-icon">
+          <img src="assets/icons/regalo.png?v=opt1" alt="Gift icon">
+        </div>
+
+        <h2 data-i18n="giftTitle">Gift</h2>
+        <p class="section-text" data-i18n="giftText">
+          Il regalo più grande è la vostra presenza. Se desiderate contribuire, potete farlo qui.
+        </p>
+
+        <div class="iban-box">
+          <span id="iban">IT00X0000000000000000000000</span>
+        </div>
+
+        <button type="button" class="map-button" onclick="copyIBAN()" data-i18n="copyIban">
+          Copia IBAN
+        </button>
+
+        <button type="button" class="back-button" onclick="goBack()" data-i18n="back">Indietro</button>
+      </div>
+    </section>
+
+    <div id="rsvp-modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="rsvp-modal-title">
+      <div class="modal-card">
+        <h2 id="rsvp-modal-title" data-i18n="rsvpModalTitle">Conferma RSVP</h2>
+        <p data-i18n="rsvpModalText">Stai per aprire il modulo di conferma partecipazione.</p>
+        <div class="modal-actions">
+          <button type="button" class="secondary-button" onclick="closeRSVPModal()" data-i18n="cancel">Annulla</button>
+          <button type="button" class="map-button" onclick="continueRSVP()" data-i18n="continueToForm">Apri modulo</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="guest-notice-modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="guest-notice-title">
+      <div class="modal-card guest-notice-card">
+        <h2 id="guest-notice-title" data-i18n="guestNoticeTitle">Una nota per te</h2>
+        <div id="guest-notice-content" class="guest-notice-content"></div>
+        <div class="modal-actions">
+          <button type="button" class="map-button" onclick="closeGuestNotice()" data-i18n="guestNoticeButton">Ho letto</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="./script-20260704.js"></script>
+</body>
+</html>
