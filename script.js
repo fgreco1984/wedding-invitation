@@ -7,7 +7,8 @@ const guestNoticesShown = {
   travel: false
 };
 let pendingNoticeSection = null;
-const weddingDate = new Date("2026-10-04T13:00:00+02:00");
+let pendingNoticeCallback = null;
+const weddingDate = new Date("2026-10-03T16:30:00+02:00");
 
 const languageTitles = [
   "Scegli la lingua",
@@ -29,7 +30,7 @@ const translations = {
 
     ceremonyPlace: "Duomo di San Giovanni Battista",
     ceremonyAddress: "Via Duomo, 12\n72100 Brindisi (BR), Italia",
-    ceremonyTime: "Ore 13:00",
+    ceremonyTime: "Ore 16:30",
     openMap: "Apri su Google Maps",
 
     parkingTitle: "Parcheggi consigliati",
@@ -41,9 +42,9 @@ const translations = {
     parkingWalk10: "10 min a piedi",
     openSmall: "Apri",
 
-    receptionPlace: "Masseria Montalbano",
-    receptionAddress: "SS16, km 871,800\n72017 Ostuni (BR), Italia",
-    receptionTime: "Ore 15:00",
+    receptionPlace: "Masseria Caselli",
+    receptionAddress: "Contrada Caselli\n72012 Carovigno (BR), Italia",
+    receptionTime: "A seguire",
     openWebsite: "Sito web",
     countdownKicker: "Mancano",
     countdownDays: "giorni",
@@ -61,10 +62,13 @@ const translations = {
     rsvpModalText: "Stai per aprire il modulo di conferma partecipazione.",
     guestNoticeTitle: "Una nota per te",
     guestNoticeButton: "Ho letto",
-    adultOnlyNoticeTitle: "Celebrazione adults only",
-    adultOnlyNoticeText: "Amiamo i vostri bambini, ma per questo giorno speciale abbiamo deciso di riservare la celebrazione del nostro matrimonio agli adulti. Grazie per la comprensione, non vediamo l’ora di festeggiare insieme.",
+    adultOnlyNoticeTitle: "Una piccola nota per i genitori",
+    adultOnlyNoticeText: "Amiamo i vostri piccoli angeli, ma per questo giorno speciale desideriamo vivere la celebrazione del nostro matrimonio in un’atmosfera riservata agli adulti. Vi ringraziamo di cuore per la comprensione.",
     travelNoticeTitle: "La vostra presenza è già un dono",
     travelNoticeText: "Avervi accanto dopo un viaggio così importante è già il dono più prezioso. La vostra presenza vale più di qualsiasi regalo.",
+    hotelInfoTitle: "Pernottamento",
+    hotelInfoText: "Ti abbiamo segnato tra gli ospiti per cui valutare il pernottamento. Il giorno del matrimonio sarà organizzato da noi; per eventuale notte prima o dopo ti invieremo i dettagli appena avremo conferme definitive su costi e disponibilità.",
+    hotelInfoNote: "Se hai esigenze particolari, indicacele nel modulo RSVP o scrivici direttamente.",
     cancel: "Annulla",
     continueToForm: "Apri modulo",
 
@@ -123,7 +127,7 @@ const translations = {
 
     ceremonyPlace: "Duomo di San Giovanni Battista",
     ceremonyAddress: "Via Duomo, 12\n72100 Brindisi (BR), Italy",
-    ceremonyTime: "Time: 13:00",
+    ceremonyTime: "Time: 16:30",
     openMap: "Open in Google Maps",
 
     parkingTitle: "Recommended parking",
@@ -135,9 +139,9 @@ const translations = {
     parkingWalk10: "10 min walk",
     openSmall: "Open",
 
-    receptionPlace: "Masseria Montalbano",
-    receptionAddress: "SS16, km 871,800\n72017 Ostuni (BR), Italy",
-    receptionTime: "Time: 15:00",
+    receptionPlace: "Masseria Caselli",
+    receptionAddress: "Contrada Caselli\n72012 Carovigno (BR), Italy",
+    receptionTime: "To follow",
     openWebsite: "Website",
     countdownKicker: "Only",
     countdownDays: "days",
@@ -159,6 +163,9 @@ const translations = {
     adultOnlyNoticeText: "We love your children, but for this special day we have decided to keep our wedding celebration for adults. Thank you for your understanding, and we can’t wait to celebrate together.",
     travelNoticeTitle: "Your presence is already a gift",
     travelNoticeText: "Having you with us after such an important journey is already the most precious gift. Your presence means more than any present.",
+    hotelInfoTitle: "Accommodation",
+    hotelInfoText: "We have marked you among the guests for whom accommodation may be arranged. The wedding day stay will be organized by us; for the night before or after, we will share the details as soon as costs and availability are confirmed.",
+    hotelInfoNote: "If you have any specific needs, please mention them in the RSVP form or write to us directly.",
     cancel: "Cancel",
     continueToForm: "Open form",
 
@@ -217,7 +224,7 @@ const translations = {
 
     ceremonyPlace: "Duomo di San Giovanni Battista",
     ceremonyAddress: "Via Duomo, 12\n72100 Brindisi (BR), Італія",
-    ceremonyTime: "Час: 13:00",
+    ceremonyTime: "Час: 16:30",
     openMap: "Відкрити в Google Maps",
 
     parkingTitle: "Рекомендовані парковки",
@@ -229,9 +236,9 @@ const translations = {
     parkingWalk10: "10 хв пішки",
     openSmall: "Відкрити",
 
-    receptionPlace: "Masseria Montalbano",
-    receptionAddress: "SS16, km 871,800\n72017 Ostuni (BR), Італія",
-    receptionTime: "Час: 15:00",
+    receptionPlace: "Masseria Caselli",
+    receptionAddress: "Contrada Caselli\n72012 Carovigno (BR), Італія",
+    receptionTime: "Після церемонії",
     openWebsite: "Сайт",
     countdownKicker: "Залишилось",
     countdownDays: "днів",
@@ -253,6 +260,9 @@ const translations = {
     adultOnlyNoticeText: "Ми дуже любимо ваших дітей, але для цього особливого дня ми вирішили провести наше весільне святкування лише для дорослих. Дякуємо за розуміння і з нетерпінням чекаємо на спільне святкування.",
     travelNoticeTitle: "Ваша присутність уже є подарунком",
     travelNoticeText: "Мати вас поруч після такої важливої подорожі — це вже найцінніший подарунок. Ваша присутність для нас важить більше за будь-який подарунок.",
+    hotelInfoTitle: "Проживання",
+    hotelInfoText: "Ми відмітили вас серед гостей, для яких може знадобитися проживання. Ночівля у день весілля буде організована нами; щодо ночі до або після ми повідомимо деталі, щойно будуть підтверджені ціни та наявність місць.",
+    hotelInfoNote: "Якщо у вас є особливі побажання, вкажіть їх у формі RSVP або напишіть нам напряму.",
     cancel: "Скасувати",
     continueToForm: "Відкрити форму",
 
@@ -317,9 +327,10 @@ function getUrlLanguage() {
 function getUrlFlag(name) {
   try {
     const params = new URLSearchParams(window.location.search);
-    const value = params.get(name);
+    const aliases = name === "kids" ? ["kids", "children", "figli"] : [name];
+    const value = aliases.map((alias) => params.get(alias)).find(Boolean);
 
-    return value === "1" || value === "true" || value === "yes";
+    return value === "1" || value === "true" || value === "yes" || value === "si";
   } catch (error) {
     return false;
   }
@@ -384,6 +395,31 @@ function updateCountdown() {
   minutesEl.textContent = String(minutes).padStart(2, "0");
 }
 
+function buildHotelInfoBlock(dict) {
+  return `
+    <div class="info-section info-hotel-note">
+      <h3>🏨 ${dict.hotelInfoTitle}</h3>
+      <p>${dict.hotelInfoText}</p>
+      <p><em>${dict.hotelInfoNote}</em></p>
+    </div>
+  `;
+}
+
+function renderHotelInfoBlock() {
+  const content = document.querySelector(".info-content");
+  const dict = translations[currentLang] || translations.it;
+
+  if (!content) {
+    return;
+  }
+
+  content.querySelector(".info-hotel-note")?.remove();
+
+  if (getUrlFlag("hotel")) {
+    content.insertAdjacentHTML("afterbegin", buildHotelInfoBlock(dict));
+  }
+}
+
 function startCountdown() {
   updateCountdown();
 
@@ -428,6 +464,7 @@ function applyTranslations(lang) {
   });
 
   document.documentElement.lang = lang === "ua" ? "uk" : lang;
+  renderHotelInfoBlock();
   updateDynamicLabels(lang);
   updateCountdown();
 }
@@ -596,9 +633,9 @@ function setLanguage(lang) {
   const img = document.querySelector(".home-luxury-bg img");
 
   const imageMap = {
-    it: "assets/home-luxury-it.jpg?v=home-hq1",
-    en: "assets/home-luxury-en.jpg?v=home-hq1",
-    ua: "assets/home-luxury-ua.jpg?v=home-hq1"
+    it: "assets/new_home-luxury-it.png?v=home-ceremony1",
+    en: "assets/new_home-luxury-en.png?v=home-ceremony1",
+    ua: "assets/new_home-luxury-ua.png?v=home-ceremony1"
   };
 
   if (img) {
@@ -780,11 +817,11 @@ function openParkingMap(number) {
 }
 
 function openReceptionMap() {
-  openExternal("https://maps.app.goo.gl/mqKc28RPTLKqBD8P9");
+  openExternal("https://maps.app.goo.gl/MndmF91rFPerUNNG8");
 }
 
 function openReceptionWebsite() {
-  openExternal("https://www.masseriamontalbano.it/");
+  openExternal("https://masseriacaselli.com");
 }
 
 function openRSVPForm() {
@@ -793,18 +830,24 @@ function openRSVPForm() {
   const guestName = params.get("name") || "";
 
   const forms = {
-    it: "https://docs.google.com/forms/d/e/1FAIpQLSe7k03qwau1hYumu90xT_IRGECOyBpikZ3oQGsSTZWaO5mkXQ/viewform?usp=pp_url",
-    en: "https://docs.google.com/forms/d/e/1FAIpQLSfksh99J6tctzbF52lIzZIPuwsFFbpGtuK4pyAqxIqw8X0HYw/viewform?usp=pp_url",
-    ua: "https://docs.google.com/forms/d/e/1FAIpQLSfQ9pza3r-AxOzcppb69tEbS-XTsNu10OtQUhN3SgkO0zVsNw/viewform?usp=pp_url"
+    it: "https://docs.google.com/forms/d/e/1FAIpQLSd2VCUIDgx9LT_F0jKWmE-qm7iR1UezJVx_v3oFQ0vgfxeeDA/viewform?usp=pp_url",
+    en: "https://docs.google.com/forms/d/e/1FAIpQLSePVgFsz5NEMmOjaWuxpHfRU_Dbqk3haET_sGX6CawsuLmw/viewform?usp=pp_url",
+    ua: "https://docs.google.com/forms/d/e/1FAIpQLScn4ou6qSuys8rm2XhG1-4YHf39MABAqq2xT9-qvf43z7Blhw/viewform?usp=pp_url"
   };
   const guestIdEntries = {
-    it: "entry.1990752556",
-    en: "entry.837379632",
-    ua: "entry.1091345251"
+    it: "entry.1068143621",
+    en: "entry.713027640",
+    ua: "entry.1801443565"
+  };
+  const guestNameEntries = {
+    it: "entry.1353548956",
+    en: "entry.1430923838",
+    ua: "entry.455151247"
   };
 
   const base = forms[currentLang] || forms.it;
   const guestIdEntry = guestIdEntries[currentLang] || guestIdEntries.it;
+  const guestNameEntry = guestNameEntries[currentLang] || guestNameEntries.it;
 
   const url = new URL(base);
 
@@ -813,7 +856,7 @@ function openRSVPForm() {
   }
 
   if (guestName) {
-    url.searchParams.set("entry.321333560", guestName);
+    url.searchParams.set(guestNameEntry, guestName);
   }
 
   openExternal(url.toString());
@@ -823,6 +866,12 @@ function confirmRSVP() {
   const modal = document.getElementById("rsvp-modal");
 
   applyTranslations(currentLang);
+
+  if (shouldShowGuestNotice("kids")) {
+    pendingNoticeCallback = confirmRSVP;
+    showGuestNotice("kids");
+    return;
+  }
 
   if (modal) {
     modal.classList.remove("hidden");
@@ -871,6 +920,12 @@ function closeGuestNotice() {
     const sectionId = pendingNoticeSection;
     pendingNoticeSection = null;
     revealSection(sectionId);
+  }
+
+  if (pendingNoticeCallback) {
+    const callback = pendingNoticeCallback;
+    pendingNoticeCallback = null;
+    callback();
   }
 }
 
