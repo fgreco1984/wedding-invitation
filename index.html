@@ -9,7 +9,7 @@
   <title>Wedding Invitation</title>
 
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=186">
+  <link rel="stylesheet" href="style.css?v=254">
 </head>
 
 <body>
@@ -73,8 +73,9 @@
           type="button"
           class="door-video-tap"
           onclick="playDoorVideoThenLanguage()"
-          aria-label="Open invitation">
-          OPEN
+          aria-label="Open invitation"
+          data-label="ENTRA">
+          ENTRA
         </button>
       </div>
     </section>
@@ -154,7 +155,7 @@
             <div class="parking-item">
               <div>
                 <strong data-i18n="parkingAlt">Alternativa</strong>
-                <p data-i18n="parkingWalk10">10 min a piedi</p>
+                <p data-i18n="parkingWalk10">7 min a piedi</p>
               </div>
               <button type="button" onclick="openParkingMap(3)" data-i18n="openSmall">Apri</button>
             </div>
@@ -195,7 +196,7 @@
         </div>
 
         <h2 data-i18n="rsvpTitle">RSVP</h2>
-        <p class="section-text" data-i18n="rsvpText">Conferma la tua presenza entro il 10 settembre</p>
+        <p class="section-text" data-i18n="rsvpText">Conferma la tua presenza entro il 15 agosto</p>
 
         <div class="wedding-countdown" aria-live="polite">
           <div class="countdown-kicker" data-i18n="countdownKicker">Mancano</div>
@@ -230,8 +231,74 @@
         </div>
 
         <h2 data-i18n="info">Info</h2>
-        <p class="section-text info-intro" data-i18n="infoIntro">Tutte le informazioni utili per il vostro soggiorno</p>
-        <div class="info-content" data-i18n="infoContent"></div>
+        <p class="section-text info-intro" data-i18n="infoIntro">Scegli le informazioni che vuoi consultare</p>
+
+        <div id="info-menu" class="info-menu" aria-live="polite">
+          <button type="button" class="info-tile" onclick="openInfoSubsection('transport')">
+            <img src="assets/icons/transport_.png?v=5" alt="">
+            <span data-i18n="infoTransportTitle">Trasporti</span>
+          </button>
+
+          <button type="button" class="info-tile" onclick="openInfoSubsection('hotel')">
+            <img src="assets/icons/hotel.png?v=5" alt="">
+            <span data-i18n="infoHotelTitle">Alloggio</span>
+          </button>
+
+          <button type="button" class="info-tile info-tile-program" onclick="openInfoSubsection('program')">
+            <img src="assets/icons/events.png?v=2" alt="">
+            <span data-i18n="infoProgramTitle">Programma</span>
+          </button>
+
+          <button type="button" class="info-tile" onclick="openInfoSubsection('dress')">
+            <img src="assets/icons/dress-code.png?v=5" alt="">
+            <span data-i18n="infoDressTitle">Dress code</span>
+          </button>
+
+          <button type="button" class="info-tile" onclick="openInfoSubsection('contacts')">
+            <img src="assets/icons/contacts.png?v=5" alt="">
+            <span data-i18n="infoContactsTitle">Contatti utili</span>
+          </button>
+        </div>
+
+        <div class="info-subpanel hidden" data-info-panel="transport">
+          <h3 data-i18n="infoTransportTitle">Trasporti</h3>
+          <div class="info-subsection-body">
+            <div data-i18n="infoTransportContent">Dettagli in arrivo.</div>
+          </div>
+          <button type="button" class="info-back-button" onclick="closeInfoSubsection()" data-i18n="backToInfo">Torna alle info</button>
+        </div>
+
+        <div class="info-subpanel hidden" data-info-panel="hotel">
+          <h3 data-i18n="infoHotelTitle">Alloggio</h3>
+          <div class="info-subsection-body">
+            <div data-i18n="infoHotelContent">Dettagli in arrivo.</div>
+          </div>
+          <button type="button" class="info-back-button" onclick="closeInfoSubsection()" data-i18n="backToInfo">Torna alle info</button>
+        </div>
+
+        <div class="info-subpanel hidden" data-info-panel="program">
+          <h3 data-i18n="infoProgramTitle">Programma</h3>
+          <div class="info-subsection-body">
+            <div data-i18n="infoProgramContent">Dettagli in arrivo.</div>
+          </div>
+          <button type="button" class="info-back-button" onclick="closeInfoSubsection()" data-i18n="backToInfo">Torna alle info</button>
+        </div>
+
+        <div class="info-subpanel hidden" data-info-panel="dress">
+          <h3 data-i18n="infoDressTitle">Dress code</h3>
+          <div class="info-subsection-body">
+            <div data-i18n="infoDressContent">Dettagli in arrivo.</div>
+          </div>
+          <button type="button" class="info-back-button" onclick="closeInfoSubsection()" data-i18n="backToInfo">Torna alle info</button>
+        </div>
+
+        <div class="info-subpanel hidden" data-info-panel="contacts">
+          <h3 data-i18n="infoContactsTitle">Contatti utili</h3>
+          <div class="info-subsection-body">
+            <div data-i18n="infoContactsText">Dettagli in arrivo.</div>
+          </div>
+          <button type="button" class="info-back-button" onclick="closeInfoSubsection()" data-i18n="backToInfo">Torna alle info</button>
+        </div>
 
         <button type="button" class="back-button" onclick="goBack()" data-i18n="back">Indietro</button>
       </div>
@@ -250,7 +317,7 @@
           Condividi i tuoi ricordi
         </button>
 
-        <p class="photo-note" data-i18n="photosNote">Puoi caricare foto e video anche dopo il matrimonio.</p>
+        <p class="photo-note" data-i18n="photosNote">Il caricamento sarà attivo da qualche giorno prima del matrimonio e resterà disponibile anche dopo.</p>
 
         <button type="button" class="back-button" onclick="goBack()" data-i18n="back">Indietro</button>
       </div>
@@ -267,13 +334,33 @@
           Il regalo più grande è la vostra presenza. Se desiderate contribuire, potete farlo qui.
         </p>
 
-        <div class="iban-box">
-          <span id="iban">IT00X0000000000000000000000</span>
-        </div>
+        <div class="gift-transfer-card">
+          <div class="gift-qr-wrap">
+            <img src="assets/gift-qr.png?v=1" alt="QR code bonifico regalo">
+          </div>
 
-        <button type="button" class="map-button" onclick="copyIBAN()" data-i18n="copyIban">
-          Copia IBAN
-        </button>
+          <p class="gift-payment-note" data-i18n="giftQrHint">Scansiona il QR con l'app della tua banca oppure copia i dati del bonifico.</p>
+
+          <button type="button" class="map-button" onclick="copyIBAN()" data-i18n="copyGiftDetails">
+            Copia dati bonifico
+          </button>
+
+          <details class="bank-details">
+            <summary data-i18n="showBankDetails">Mostra dettagli bonifico</summary>
+            <dl>
+              <dt data-i18n="bankBeneficiaryLabel">Beneficiario</dt>
+              <dd>Fabio Greco</dd>
+              <dt>IBAN</dt>
+              <dd id="iban">IT37 Y036 6901 6003 9916 4289 231</dd>
+              <dt data-i18n="bankBicLabel">Codice BIC/SWIFT</dt>
+              <dd>REVOITM2</dd>
+              <dt data-i18n="bankNameLabel">Nome e sede della banca</dt>
+              <dd>Revolut Bank UAB<br>Via Dante 7, 20123, Milano (MI), Italy</dd>
+              <dt data-i18n="bankReasonLabel">Causale</dt>
+              <dd>REGALO NOZZE INNA E FABIO</dd>
+            </dl>
+          </details>
+        </div>
 
         <button type="button" class="back-button" onclick="goBack()" data-i18n="back">Indietro</button>
       </div>
@@ -290,6 +377,126 @@
       </div>
     </div>
 
+    <div id="rsvp-form-modal" class="rsvp-form-modal hidden" role="dialog" aria-modal="true" aria-labelledby="rsvp-form-title">
+      <div class="rsvp-form-panel">
+        <button type="button" class="rsvp-form-close" id="rsvp-form-close" aria-label="Chiudi RSVP">×</button>
+
+        <div class="rsvp-form-header">
+          <p class="rsvp-form-kicker" data-rsvp-text="kicker">RSVP</p>
+          <h2 id="rsvp-form-title" data-rsvp-text="title">Conferma la tua presenza</h2>
+          <p data-rsvp-text="intro">Aiutaci a organizzare al meglio la giornata confermando chi sarà con noi.</p>
+        </div>
+
+        <div id="rsvp-existing-status" class="rsvp-existing-status hidden" aria-live="polite"></div>
+        <div id="rsvp-form-error" class="rsvp-form-error hidden" role="alert"></div>
+
+        <form id="rsvp-internal-form" class="rsvp-internal-form" novalidate>
+          <input type="hidden" name="guestId">
+          <input type="hidden" name="language">
+
+          <label class="rsvp-field rsvp-field-wide">
+            <span data-rsvp-text="guestNameLabel">Invitato</span>
+            <input type="text" name="guestName" readonly>
+          </label>
+
+          <fieldset class="rsvp-fieldset rsvp-field-wide">
+            <legend data-rsvp-text="attendanceLabel">Parteciperai?</legend>
+            <div class="rsvp-choice-row">
+              <label class="rsvp-choice">
+                <input type="radio" name="attendance" value="yes" required>
+                <span data-rsvp-text="attendanceYes">Sì, parteciperò</span>
+              </label>
+              <label class="rsvp-choice">
+                <input type="radio" name="attendance" value="no" required>
+                <span data-rsvp-text="attendanceNo">No, non potrò esserci</span>
+              </label>
+            </div>
+          </fieldset>
+
+          <div class="rsvp-attendance-details" data-rsvp-details>
+            <label class="rsvp-field">
+              <span data-rsvp-text="totalLabel">Numero dei partecipanti (compreso tu)</span>
+              <input type="number" name="participantsTotal" min="1" max="12" step="1" inputmode="numeric" value="1">
+            </label>
+
+            <label class="rsvp-field">
+              <span data-rsvp-text="adultsLabel">Adulti</span>
+              <input type="number" name="adults" min="1" max="12" step="1" inputmode="numeric" value="1">
+            </label>
+
+            <label class="rsvp-field">
+              <span data-rsvp-text="childrenLabel">Bambini</span>
+              <input type="number" name="children" min="0" max="12" step="1" inputmode="numeric" value="0">
+            </label>
+
+            <label class="rsvp-field rsvp-field-wide">
+              <span data-rsvp-text="participantNamesLabel">Nomi accompagnatori</span>
+              <textarea name="participantNames" rows="3" maxlength="500" data-rsvp-placeholder="participantNamesPlaceholder"></textarea>
+            </label>
+
+            <label class="rsvp-field rsvp-field-wide">
+              <span data-rsvp-text="childrenAgesLabel">Nome ed età dei bambini</span>
+              <textarea name="childrenAges" rows="2" maxlength="300" data-rsvp-placeholder="childrenAgesPlaceholder"></textarea>
+            </label>
+
+            <label class="rsvp-field rsvp-field-wide">
+              <span data-rsvp-text="dietaryLabel">Preferenze alimentari</span>
+              <textarea name="dietaryPreferences" rows="2" maxlength="500" data-rsvp-placeholder="dietaryPlaceholder"></textarea>
+            </label>
+
+            <label class="rsvp-field rsvp-field-wide">
+              <span data-rsvp-text="allergiesLabel">Allergie, Intolleranze</span>
+              <textarea name="allergies" rows="2" maxlength="500" data-rsvp-placeholder="allergiesPlaceholder"></textarea>
+            </label>
+
+            <label class="rsvp-choice rsvp-field-wide rsvp-borgo-request hidden" data-rsvp-borgo-field>
+              <input type="checkbox" name="borgoInfoRequest" value="yes">
+              <span data-rsvp-text="borgoInfoRequestLabel">Vorrei maggiori informazioni su Villa Borgo Maresca</span>
+            </label>
+          </div>
+
+          <label class="rsvp-field rsvp-field-wide rsvp-message-field">
+            <span data-rsvp-text="messageLabel">Vuoi lasciare un messaggio agli sposi?</span>
+            <span class="rsvp-photo-wrap">
+              <img src="assets/rsvp-message.jpg" alt="" onerror="this.closest('.rsvp-photo-wrap').classList.add('hidden')">
+            </span>
+            <textarea name="message" rows="4" maxlength="800" data-rsvp-placeholder="messagePlaceholder"></textarea>
+          </label>
+
+          <label class="rsvp-privacy rsvp-field-wide">
+            <input type="checkbox" name="privacy" required>
+            <span data-rsvp-text="privacyLabel">Acconsento all'uso dei dati per la gestione dell'evento.</span>
+            <button type="button" class="rsvp-privacy-info-button" id="rsvp-privacy-info-button" aria-label="Leggi informativa privacy" data-rsvp-aria="privacyInfoButtonLabel">i</button>
+          </label>
+
+          <div class="rsvp-form-actions rsvp-field-wide">
+            <button type="button" class="secondary-button" id="rsvp-cancel-button" data-rsvp-text="cancel">Annulla</button>
+            <button type="submit" class="map-button" id="rsvp-submit-button" data-rsvp-text="submit">Invia RSVP</button>
+          </div>
+        </form>
+
+        <section id="rsvp-success-panel" class="rsvp-success-panel hidden" aria-live="polite">
+          <p class="rsvp-form-kicker" data-rsvp-text="successKicker">RSVP registrato</p>
+          <h2 data-rsvp-text="successTitle">Grazie, risposta ricevuta</h2>
+          <p id="rsvp-absence-message" class="rsvp-absence-message hidden" data-rsvp-text="absenceSuccessMessage">Ci dispiace non averti con noi, ma grazie per averci avvisato.</p>
+          <div id="rsvp-summary" class="rsvp-summary"></div>
+          <p data-rsvp-text="successNote">Puoi modificare la risposta riaprendo questo modulo dallo stesso invito.</p>
+          <div class="rsvp-form-actions">
+            <button type="button" class="secondary-button" id="rsvp-edit-button" data-rsvp-text="edit">Modifica RSVP</button>
+            <button type="button" class="map-button" id="rsvp-home-button" data-rsvp-text="home">Torna alla home</button>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <div id="rsvp-privacy-info-panel" class="rsvp-privacy-info-panel hidden" role="dialog" aria-modal="true" aria-labelledby="rsvp-privacy-info-title">
+      <div class="rsvp-privacy-info-card">
+        <h3 id="rsvp-privacy-info-title" data-rsvp-text="privacyInfoTitle">Informativa privacy</h3>
+        <p data-rsvp-text="privacyInfoText">Informativa privacy: i dati personali forniti tramite questo modulo saranno utilizzati esclusivamente per la gestione dell'evento Inna & Fabio, incluse conferme di partecipazione, esigenze alimentari, alloggio, transfer e comunicazioni organizzative. Il titolare del trattamento è Fabio Greco. I dati saranno conservati solo per il tempo necessario all'organizzazione e allo svolgimento dell'evento e saranno cancellati al termine dello stesso, salvo eventuali obblighi di legge.</p>
+        <button type="button" class="secondary-button" id="rsvp-privacy-info-close" data-rsvp-text="privacyInfoClose">Chiudi</button>
+      </div>
+    </div>
+
     <div id="guest-notice-modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="guest-notice-title">
       <div class="modal-card guest-notice-card">
         <h2 id="guest-notice-title" data-i18n="guestNoticeTitle">Una nota per te</h2>
@@ -302,6 +509,6 @@
 
   </div>
 
-  <script src="./script.js?v=189"></script>
+  <script src="./script.js?v=254"></script>
 </body>
 </html>
